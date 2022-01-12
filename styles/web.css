@@ -304,7 +304,7 @@ video{
     float: left;
     margin: 1%;
     padding: 1%;
-    width: calc(23.6% - 1%);
+    width: 23%;
     height: 70%;
     box-sizing: border-box;
     box-shadow: 0 13px 38px rgba(14, 223, 67, 0.788),0 11px 12px rgba(10, 233, 29, 0.788);
@@ -335,6 +335,10 @@ th{
     font-family: var(--font-monospace);
     font-weight: bolder;
     color: var(--color-white);
+    background-color: black;
+}
+table tfoot tr td{
+    background-color: black;
 }
 td{
     vertical-align: top;
@@ -469,7 +473,7 @@ td{
 
 #article2 h2{
     background-color: transparent;
-    color: rgb(6, 153, 6);
+    color: rgb(0, 0, 0);
 }
 #article3{
     width: 70%;
@@ -489,6 +493,7 @@ td{
 }
 #article2 p,h2{
     text-align: center;
+    font-weight: bolder;
 }
 #conContainer{
     display: flex;
@@ -509,6 +514,11 @@ td{
     margin: 0%;
     padding: 7px;
     transition: transform .1s
+}
+#conContainer #content h2{
+    color: black;
+    font-family: var(--font-monospace);
+    color: rgb(25, 128, 0);
 }
 #conContainer #content p{
     font-family: 'Courier New', Courier, monospace;
@@ -774,7 +784,6 @@ iframe{
 #article4 h2{
     text-align: left;
     width: 150px;
-    color: var(--theme-color);
     background-color: transparent;
     text-decoration: underline;
     background-color: transparent;
