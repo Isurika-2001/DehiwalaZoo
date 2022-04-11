@@ -82,89 +82,97 @@
                         <h2>Buy Tickets</h2>
                         <div class="form-style">
                             <form id="form1">
+                                
 
                                 <label for="choice"><span>Choice of ticket</span></label><br>
-                                <select name="choice">
-                                    <option>Day pass</option>
-                                    <option>Student Pass</option>
-                                    <option>Foreigner Pass</option>
+                                <select name="choice" id="choice" onchange="calculateTotal();">
+                                    <option value="">--Select your choice--</option>
+                                    <option value="0">Day Pass</option>
+                                    <option value="1">Student Pass</option>
+                                    <option value="2">Foreign Pass</option>
                                 </select>
 
-                                <label for="year"><span>Year</span></label><br>
-                                <select name="year">
-                                    <option>2021</option>
-                                    <option>2022</option>
-                                </select>
-
-                                <label for="month"><span>Month</span></label><br>
-                                <select name="month">
-                                    <option>January</option>
-                                    <option>February</option>
-                                    <option>March</option>
-                                    <option>April</option>
-                                    <option>May</option>
-                                    <option>June</option>
-                                    <option>July</option>
-                                    <option>August</option>
-                                    <option>September</option>
-                                    <option>October</option>
-                                    <option>November</option>
-                                    <option>December</option>
+                                <label for="duration"><span>Duration</span></label><br>
+                                <select name="duration" id="duration" onchange="calculateTotal();">
+                                    <option value="">--Select dutration--</option>
+                                    <option value="0">3 hours</option>
+                                    <option value="1">Half day</option>
+                                    <option value="2">Full day</option>
+                                    <option value="3">2 day</option>
                                 </select>
 
                                 <label for="date"><span>Date</span></label><br>
-                                <select name="date">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                    <option>6</option>
-                                    <option>7</option>
-                                    <option>8</option>
-                                    <option>9</option>
-                                    <option>10</option>
-                                    <option>11</option>
-                                    <option>12</option>
-                                    <option>13</option>
-                                    <option>14</option>
-                                    <option>15</option>
-                                    <option>16</option>
-                                    <option>17</option>
-                                    <option>18</option>
-                                    <option>19</option>
-                                    <option>20</option>
-                                    <option>21</option>
-                                    <option>22</option>
-                                    <option>23</option>
-                                    <option>24</option>
-                                    <option>25</option>
-                                    <option>26</option>
-                                    <option>27</option>
-                                    <option>28</option>
-                                    <option>29</option>
-                                    <option>30</option>
-                                    <option>31</option>
-                                </select><br>
-
-                                <label for="duration"><span>Duration</span></label><br>
-                                <select name="Duration">
-                                    <option>3 hours</option>
-                                    <option>Half day</option>
-                                    <option>Full day</option>
-                                    <option>2 day</option>
-                                </select>
-
+                                <input name="date" type="date" id="date">
+                                
                                 <label for="adult"><span>Adult admissions</span></label><br>
-                                <input type="number" id="noOfAdult" name="adult_ad" maxlength="3" value="Number of adults">
+                                <input type="number" id="noOfAdult" name="adult_ad" min="0" maxlength="3" value="0" onchange="calculateTotal();">
 
                                 <label for="child"><span>Child / Student admissions</span></label><br>
-                                <input type="number" id="noOfChild" name="child_ad" maxlength="3" value="Number of Child / Student"><br>
+                                <input type="number" id="noOfChild" name="child_ad" min="0" maxlength="3" value="0" onchange="calculateTotal();"><br>
+                                <br><br>
 
-                                <input type="submit" id="submit" value="Add to Order">&emsp;
+                                <input type="button" id="extraChoice" value="Add extra choices" onclick="addExtra();">
+                                
+                                <div id="hide" style="display: none;">
+                                    <br>
 
-                                <input type="reset" id ="reset">
+                                    <label for="AnnualPass"><span>Annual Pass</span></label><br>
+                                    <input type="number" id="noOfPass" name="Annual_Pass" min="0" maxlength="3" value="0" onchange="calculateTotal();"><br>
+    
+                                    <label for="FoodToknes"><span>Food Tokens</span></label><br>
+                                    <input type="number" id="noOfTokens" name="Food_Tokens" min="0" maxlength="3" value="0" onchange="calculateTotal();"><br>
+                                </div>
 
+                                <div id="leftAlign">
+                                    <p id="dH2">COST</p><p id="spCost" name="">0.00</p></label><br><br>
+                                </div>
+                                <div id="alert"></div>
+                                <input type="button" id="btnFav" value="Add to favorit" onclick="addToFavorite();">
+                                <input type="button" id="btnOrder" value="Order favorit" onclick="OrderFav();">
+                                <input type="button" value="Add to Order" onclick="addToOrder();"><br><br>
+                            
+
+                                <div id="divOrder" style="display: none;">
+                                    <table id="PD_Table" border="1">
+                                        <thead><tr id="head">
+                                                <th rowspan="2">Choice</th>
+                                                <th rowspan="2">Date</th>
+                                                <th rowspan="2">Duration</th>
+                                                <th colspan="2">Admission</th>
+                                                <th rowspan="2">Total</th>
+                                                <td rowspan="2"></td>
+                                            </tr>
+                                            <tr id="head">
+                                                <th>Adult</th>
+                                                <th>Child</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbody_purchase">
+
+                                        </tbody>
+                                        <tfoot id="tFoot">
+                                            <tr>
+                                                <td id="align-left" colspan="3">Annual Passes</th>
+                                                <td colspan="2" id="tbAnnual">0</td>
+                                                <td id="tbAnnual_cost">0.00</th>
+                                                <td id="remove_pass"></th>
+                                            </tr>
+                                            <tr>
+                                                <td id="align-left" colspan="3">Food Tokens</th>
+                                                <td colspan="2" id="tbFood">0</td>
+                                                <td id="tbFood_cost">0.00</th>
+                                                <td id="remove_token"></th>
+                                            </tr>
+                                            <tr>
+                                                <th id="align-left" colspan="5">Grand Total</th>
+                                                <th id="tbGrandTot">0.00</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                    <input type="button" value="Place Order" onclick="placeOrder(this.parentElement);">
+                                    <input type="button" value="Check Loyalty Points" onclick="showLoyaltyPoints();">
+
+                                </div>
                             </form>
                         </div>
                     </section>
@@ -175,54 +183,65 @@
                             <p id="main_p">Monetary And Equipment Donations are accepted.</p>
                             <p>Equipment donations are accepted at the head office, Dehiwala zoo</p><br>
                             <div id="form2">
-                                <form>
+                                <form id="formD">
                                     <div id="donateH2">
                                         <h2>MAKE A DONATION</h2>
                                     </div>
     
-                                    <label for="year"><span>Choose An Amount</span></label><br><br>
-                                    <button>Rs 5000</button>
-                                    <button>Rs 10 000</button>
-                                    <button>Rs 50 000</button>
-                                    <button>Rs 100 000</button><br>
+                                    <div id="doonateButon">
+                                        <label for="amount"><span>Choose An Amount</span></label><br><br>
+                                        <select id="amount" onchange="donateAmount();">
+                                            <option value="--Select your amount of donation--">--Select amount--</option>
+                                            <option value="100">LKR 100</option>
+                                            <option value="250">LKR 250</option>
+                                            <option value="500">LKR 500</option>
+                                            <option value="1000">LKR 1 000</option>
+                                            <option value="2500">LKR 2 500</option>
+                                            <option value="5000">LKR 5 000</option>
+                                            <option value="10000">LKR 10 000</option>
+                                        </select>
+                                    </div>
     
-                                    <label for="year"><span>Other<requierd>*</requierd></span></label><br>
-                                    <input type="text" name="other" maxlength="10" required="required"><br>
+                                    <label for="otherAmount"><span>Other</span></label><br>
+                                    <input type="text" id="other" value="--Enter your donation amount here--" onclick="remove_innerText();"><br>
     
                                     <div id="donateForm">
     
                                         <div class="DF">
-                                            <label for="year"><span>First Name<requierd>*</requierd></span></label><br>
-                                            <input type="text" name="First Name" maxlength="40" required="required">
+                                            <label for="fname"><span>First Name</span></label><br>
+                                            <input type="text" id="fname" maxlength="40" value="">
                                         </div>
                                         
                                         <div class="DF">
-                                            <label for="year"><span>Last Name<requierd>*</requierd></span></label><br>
-                                            <input type="text" name="Last Name" maxlength="40" required="required">   
+                                            <label for="lname"><span>Last Name</span></label><br>
+                                            <input type="text" id="lname" maxlength="40" value="">   
                                         </div>
     
                                         <div class="DF">
-                                            <label for="year"><span>Email Address<requierd>*</requierd></span></label><br>
-                                            <input type="text" name="Email Address" maxlength="40" required="required">
+                                            <label for="email"><span>Email Address</span></label><br>
+                                            <input type="text" id="email" maxlength="40" value="">
                                         </div>
     
                                         <div class="DF">
-                                            <label for="year"><span>Phone Number<requierd>*</requierd></span></label><br>
-                                            <input type="text" name="Phone Number" maxlength="10" required="required">
+                                            <label for="addr"><span>Address</span></label><br>
+                                            <input type="text" id="addr" maxlength="50" value="">
                                         </div>
     
                                         <div class="DF">
-                                            <label for="year"><span>Address<requierd>*</requierd></span></label><br>
-                                            <input type="text" name="Address" maxlength="50" required="required">
+                                            <label for="CDnum"><span>Credit Card Number</span></label><br>
+                                            <input type="text" id="CDnum" maxlength="16" value="">
                                         </div>
-    
+
                                         <div class="DF">
-                                            <label for="year"><span>Credit Card Number<requierd>*</requierd></span></label><br>
-                                            <input type="text" name="CDnumbr" maxlength="3" required="required">
+                                            <label for="pin"><span>3 Digit Pin</span></label><br>
+                                            <input type="text" id="pin" maxlength="3" value="">
                                         </div>
     
-                                        <input id="MKdonate" type="submit" name="submit" value="Make Donation">
+                                        <input id="btnADD" type="button" value="Make Donation" onclick="makeDonation();">
                                         
+                                        <p id="dDetails" style="display: none;"></p>
+
+                                        <input id="confirmDonate" type="button" value="Confirm Donation" style="display: none;" onclick="confirmDonation();">
                                     </div>
                                 </form>
                             </div>
@@ -235,9 +254,9 @@
                 <div id="boxes">
                     <nav id="footerNav">
                         <ul>
-                            <li><a href="#">Help</a></li><br>
-                            <li><a href="#">Privacy and Terms</a></li><br>
-                            <li><a href="#">User Agreement</a></li><br>
+                            <li><a href="#">Help</a></li>
+                            <li><a href="#">Privacy and Terms</a></li>
+                            <li><a href="#">User Agreement</a></li>
                             <li><a href="Home.html">Go To Home</a></li>
                         </ul>
                     </nav>
@@ -247,10 +266,10 @@
                         <img src="images/icons8-instagram-32.png" alt="iconInsta">
                     </div>
                     <ul class="footerul">
-                        <li><a href=Contact.html>CONTACT US</a></li><br>
-                        <li>Department of National<br>Zoological Gardens<br>Anagarika Dharmapala<br>mawatha<br>Dehiwala</li><br>
-                        <li>011-2712751</li><br>
-                        <li><a href="mailto:zoosl@slt.lk">zoosl@slt.lk</a></li><br>
+                        <li><a href=Contact.html>CONTACT US</a></li>
+                        <li>Department of National<br>Zoological Gardens<br>Anagarika Dharmapala<br>mawatha<br>Dehiwala</li>
+                        <li>011-2712751</li>
+                        <li><a href="mailto:zoosl@slt.lk">zoosl@slt.lk</a></li>
                     </ul>
                 </div>
                 <center>&copy; Dehiwala Zoological Garden 2021. All right reserved. | S.A.I.Lakshani</center>
@@ -273,5 +292,6 @@
                 
             </footer>
         </div>
+        <script src="scripts/script.js"></script>
     </body>
 </html>
