@@ -8,6 +8,7 @@
 
 var noOfRows = 0;
 document.getElementById("spCost").style = "text-align:center";
+var trow;
 
 function calculateTotal(){
 
@@ -122,10 +123,11 @@ function addToOrder(){
         var total = cost - (annualPass_cost + foodToken_cost);
 
         var tbody = document.getElementById("tbody_purchase");
-        var trow = tbody.insertRow(-1)
 
         
         if(noOfAdults > 0 || noOfChild>0){
+            
+            trow = tbody.insertRow(-1)
 
             noOfRows++;
 
@@ -154,7 +156,7 @@ function addToOrder(){
 
         }
 
-
+        highlight();
     
 
         
@@ -190,7 +192,7 @@ function addToOrder(){
         document.getElementById("remove_token").innerHTML = "<a href='javascript:void(0)' style='color:blue;font-weight:bold' onclick='removeToken(this.parentElement);'>X</a>";
         
         document.getElementById("tbGrandTot").innerHTML = grand_total.toFixed(2);
-        document.getElementById("tbGrandTot").style = "text-align:right";
+        document.getElementById("tbGrandTot").style = "text-align:center";
 
         
         document.getElementById("divOrder").style = "display: block";
@@ -304,6 +306,28 @@ function placeOrder(item){
     }
 }
 
+//table row hover
+function highlight(){
+    let listElement = document.getElementsByTagName("li");
+
+
+    for(let i = 0; i<noOfRows; i++){
+        trow.addEventListener("mouseenter",listEnter)
+        trow.addEventListener("mouseleave",listLeave)
+    }
+}
+
+
+function listEnter(){
+    this.style.backgroundColor = "#ccffd4";
+}
+
+
+function listLeave(){
+    this.style.backgroundColor = "white";
+}
+
+
 
 
 
@@ -332,7 +356,7 @@ const getFormData = () => {
 function addToFavorite(){
     var data = getFormData();
     localStorage.setItem(form1, JSON.stringify(data[form1]));
-    const message = "form draft has been saved!";
+    const message = "form data has been saved!";
     displayAlert(message);
     resetForm1();
 }
@@ -356,9 +380,8 @@ function OrderFav() {
                 element.value = savedData[element.name];
             }
         }
-        const message = "Form has been refilled with saved data!";
+        const message = "Your favorite order has been added to the table!";
         displayAlert(message);
-        addExtra()
         calculateTotal();
         addToOrder();
     }
@@ -368,25 +391,20 @@ function OrderFav() {
 function calcLoyaltyPoints(){
     var adultTicket = parseInt(document.getElementById("noOfAdult").value);
     var childTicket = parseInt(document.getElementById("noOfChild").value);
-    var annualPass = parseInt(document.getElementById("noOfPass").value);
-    var foodToken = parseInt(document.getElementById("noOfTokens").value);
-
     
 
-    var totalTicket = adultTicket + childTicket + annualPass + foodToken;
+    var totalTicket = adultTicket + childTicket;
     if(totalTicket > 3){
         loyaltyPoints = 20 * totalTicket;
         grand_loyaltyPoints = grand_loyaltyPoints + loyaltyPoints; 
-        localStorage.setItem(form1,JSON.stringify(grand_loyaltyPoints[form1]));
+        localStorage.setItem("loyalty",grand_loyaltyPoints);
     }
 }
 
 /*when user clicks on the "Check loyalty points" button,
 it shows total loyalty points that have earned by the user so far based on the overall order*/
 function showLoyaltyPoints(){
-    if(localStorage.key(form1)){
-        const savedData = JSON.parse(localStorage.getItem(grand_loyaltyPoints[form1]));
-    }
+    grand_loyaltyPoints = JSON.parse(localStorage.getItem(`loyalty`));
     if(grand_loyaltyPoints>0){
         alert("Congratulations! You have earned "+ grand_loyaltyPoints + " loyalty points so far");
     }
@@ -506,6 +524,5 @@ function confirmDonation(){
     
     if(confirm == "Confirm Donation"){
         alert("Successfully Donated " + finalAmount);
-        return false;
     }
 }
