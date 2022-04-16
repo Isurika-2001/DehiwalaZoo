@@ -173,7 +173,7 @@ footer{
     grid-template-columns: 2fr 2fr 2fr;
     grid-column-gap: 30%;
     justify-content: center;
-    margin-right: 0 auto;
+    margin-right: 0;
 }
 .footerul li:nth-of-type(1){
     text-decoration: underline;
@@ -229,7 +229,7 @@ footer{
     align-items: center;
 }
 .homeOL{
-    list-style-type: 1;
+    list-style-type: decimal;
     background-color: rgb(151, 138, 135);
     width: 20%;
     min-width: 170px;
@@ -1094,7 +1094,7 @@ iframe{
         padding: 3px;
         margin: 1px 0;
         margin-left: 0%;
-        size: 90%;
+        resize: 90%;
     }
     input[type=button]{
         width: 95%;
@@ -1646,7 +1646,7 @@ iframe{
         padding: 3px;
         margin: 1px 0;
         margin-left: 0%;
-        size: 90%;
+        resize: 90%;
     }
     input[type=button]{
         width: 95%;
