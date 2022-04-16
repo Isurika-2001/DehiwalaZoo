@@ -127,20 +127,19 @@
                                     <p id="dH2">COST</p><p id="spCost" name="">0.00</p></label><br><br>
                                 </div>
                                 <div id="alert"></div>
-                                <input type="button" id="btnFav" value="Add to favorit" onclick="addToFavorite();">
-                                <input type="button" id="btnOrder" value="Order favorit" onclick="OrderFav();">
+                                <input type="button" id="btnFav" value="Add to favorite" onclick="addToFavorite();">
+                                <input type="button" id="btnOrder" value="Order favorite" onclick="OrderFav();">
                                 <input type="button" value="Add to Order" onclick="addToOrder();"><br><br>
                             
 
                                 <div id="divOrder" style="display: none;">
-                                    <table id="PD_Table" border="1">
+                                    <table id="PD_Table" >
                                         <thead><tr id="head">
                                                 <th rowspan="2">Choice</th>
                                                 <th rowspan="2">Date</th>
                                                 <th rowspan="2">Duration</th>
                                                 <th colspan="2">Admission</th>
-                                                <th rowspan="2">Total</th>
-                                                <td rowspan="2"></td>
+                                                <th rowspan="2" colspan="2">Total</th>
                                             </tr>
                                             <tr id="head">
                                                 <th>Adult</th>
@@ -151,21 +150,21 @@
 
                                         </tbody>
                                         <tfoot id="tFoot">
-                                            <tr>
-                                                <td id="align-left" colspan="3">Annual Passes</th>
+                                            <tr id="extraChoice">
+                                                <td id="align-left" colspan="3">Annual Passes</td>
                                                 <td colspan="2" id="tbAnnual">0</td>
-                                                <td id="tbAnnual_cost">0.00</th>
-                                                <td id="remove_pass"></th>
+                                                <td id="tbAnnual_cost">0.00</td>
+                                                <td id="remove_pass"></td>
                                             </tr>
-                                            <tr>
-                                                <td id="align-left" colspan="3">Food Tokens</th>
+                                            <tr id="extraChoice">
+                                                <td id="align-left" colspan="3">Food Tokens</td>
                                                 <td colspan="2" id="tbFood">0</td>
-                                                <td id="tbFood_cost">0.00</th>
-                                                <td id="remove_token"></th>
+                                                <td id="tbFood_cost">0.00</td>
+                                                <td id="remove_token"></td>
                                             </tr>
-                                            <tr>
+                                            <tr id="totStyle">
                                                 <th id="align-left" colspan="5">Grand Total</th>
-                                                <th id="tbGrandTot">0.00</th>
+                                                <th id="tbGrandTot" colspan="2">0.00</th>
                                             </tr>
                                         </tfoot>
                                     </table>
