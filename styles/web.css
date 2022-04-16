@@ -654,18 +654,15 @@ input[type=reset]:hover {
     background-color: black;
     justify-content: center;
 }
-#extraChoice:hover{
-    background-color: #3f9c44;
-    color: black;
-    font-size: 110%;
+#tFoot #extraChoice:hover{
+    background-color: #ccffd4;
 }
 
 #PD_Table{
     background-color: white;
     width: 95%;
-    border-radius: 10px;
-    border: #3f9c44;
-    border-style: ridge;
+    border: none;
+    font-style: italic;
 }
 #PD_Table tr{
     line-height: 200%;
@@ -673,8 +670,14 @@ input[type=reset]:hover {
 #PD_Table td{
     padding: 4px;
 }
-#head{
-    background-color: #95e4a1;
+#PD_Table th{
+    padding: 4px;
+    background-color: #fffd8e;
+}
+#tFoot #extraChoice{
+    background-color: rgb(227, 227, 227);
+    font-style: italic;
+    font-weight: bold;
 }
 #align-left{
     text-align: left;
@@ -1275,18 +1278,12 @@ iframe{
         background-color: white;
         width: 540px;
         min-width: 540px;
-        border-radius: 10px;
-        border: #3f9c44;
-        border-style: ridge;
     }
     #PD_Table tr{
         line-height: 200%;
     }
     #PD_Table td{
         padding: 4px;
-    }
-    #head{
-        background-color: #95e4a1;
     }
     #align-left{
         text-align: left;
@@ -1809,9 +1806,6 @@ iframe{
         background-color: white;
         width: 540px;
         min-width: 540px;
-        border-radius: 10px;
-        border: #3f9c44;
-        border-style: ridge;
     }
 }
 
