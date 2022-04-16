@@ -10,8 +10,11 @@ var noOfRows = 0;
 document.getElementById("spCost").style = "text-align:center";
 var trow;
 
+dateValidation();
+
 function calculateTotal(){
 
+    
     let ticketChoice = [1000,500,5000];//choice of ticket based on the customer situation.(it can be day pass, student pass or foriegn pass)
     let durationChoice = [0,250,500,1000];//extra amounts based on time duration (for half day, 1 day and 2 days.(0 = no extra))
     var cost = 0;
@@ -86,6 +89,24 @@ function check(){
         return false;
     }
 }
+
+function dateValidation(){
+    
+    var cdate = new Date();
+    var month = cdate.getMonth() + 1;
+    var year = cdate.getUTCFullYear() - 0;
+    var date = cdate.getDate();
+    if(month<10){
+        month = "0" + month;
+    }
+    if(date<10){
+        date = "0" + date;
+    }
+    var maxDate = year + "-" + month + "-" + date;
+    document.getElementById("date").setAttribute("min",maxDate);
+}
+
+
 
 function addToOrder(){
     
@@ -202,7 +223,6 @@ function addToOrder(){
     }
     
 }
-
 
 
 
